@@ -1,17 +1,17 @@
 package acciones;
 
-import locations.Location;
+import Ubicacion.Ubicacion;
 import main.Juego;
 
 public class Moverse extends Accion{ // TODO: hecho, falta armar tests.
 
 	
-	Location locationActual;
+	Ubicacion ubicacionActual;
 	Juego juego;
 	
 	public Moverse(Juego juego) {
 		
-		this.locationActual = juego.getLocation();
+		this.ubicacionActual = juego.getUbicacion();
 		this.juego = juego;
 		nombre = "moverse";
 	}
@@ -19,11 +19,11 @@ public class Moverse extends Accion{ // TODO: hecho, falta armar tests.
 
 	/* NOTA: usamos clases para cada accion para luego poder aplicar algun patron de diseño. 
 			 Habria que unificar la interfaz de todas las acciones con un objeto propertires*/
-	public void accionar(Location nuevaLocation) {
+	public void accionar(Ubicacion nuevaLocation) {
 	
-		Location location = juego.getLocation();
+		Ubicacion ubicacion = juego.getUbicacion();
 		
-		if(location.sePuedeMoverAConexion(nuevaLocation)) {	
+		if(ubicacion.sePuedeMoverAConexion(nuevaLocation)) {	
 			juego.setLocation(nuevaLocation);
 		}else {
 			System.out.println("no podes moverte ahi");

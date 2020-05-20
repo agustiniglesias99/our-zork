@@ -1,11 +1,11 @@
-package locations;
+package Ubicacion;
 
 import java.util.LinkedList;
 import java.util.List;
 //import items.Item;
 import jugadores.Npc;
 
-public class Location { // TODO: hecho, falta armar tests.
+public class Ubicacion { // TODO: hecho, falta armar tests.
 
 	private String nombre;
 	private Character genero;
@@ -14,7 +14,7 @@ public class Location { // TODO: hecho, falta armar tests.
 	private List<Conexion> conexiones;
 	private List<Npc>npcs;
 
-	public Location(String nombre, Character genero) {
+	public Ubicacion(String nombre, Character genero) {
 		this.genero = genero;
 		this.nombre = nombre;
 
@@ -109,7 +109,7 @@ public class Location { // TODO: hecho, falta armar tests.
 
 		String articuloIndeterminado = null;
 		Conexion conexion;
-		Location location;
+		Ubicacion location;
 
 		for (int indice = 0; indice < conexiones.size(); indice++) {
 
@@ -156,9 +156,9 @@ public class Location { // TODO: hecho, falta armar tests.
 		return nombre;
 	}
 
-	public boolean sePuedeMoverAConexion(Location nuevaLocation) {
+	public boolean sePuedeMoverAConexion(Ubicacion nuevaLocation) {
 
-		Location location = null;
+		Ubicacion location = null;
 		for (Conexion conexion : conexiones) {
 			
 			location = conexion.getLocation();

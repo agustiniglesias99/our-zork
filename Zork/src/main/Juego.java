@@ -1,19 +1,19 @@
 package main;
+import Ubicacion.*;
 import acciones.Moverse;
 import items.Item;
-import locations.*;
 
 public class Juego { // TODO: hecho, falta armar tests.
 
-	Location locationActual;
+	Ubicacion ubicacionActual;
 	String nombreJugador;
 	// TODO: agregar un objeto que guarde los pasos 
 	
 	public void generarEntorno() {
 		
 		/**Creo las locations*/
-		Location taberna = new Location("taberna", 'F') ;
-		Location muelle = new Location("muelle", 'M') ;
+		Ubicacion taberna = new Ubicacion("taberna", 'F') ;
+		Ubicacion muelle = new Ubicacion("muelle", 'M') ;
 		Place mesa = new Place("Suelo",'F','S');
 		Place rincon = new Place("Rincon",'M','S');
 		//set taberna
@@ -31,10 +31,10 @@ public class Juego { // TODO: hecho, falta armar tests.
 		
 		// TODO: ver como ejecutar estos 3 test desde Junit sin modificar la interface.
 		// asignacion de location inicial
-		locationActual = muelle;
+		ubicacionActual = muelle;
 		
 		//describirTest: mensaje inicial del juego
-		locationActual.describir();
+		ubicacionActual.describir();
 		
 		//cambiarLocationTest: mensaje inicial del juego
 		Moverse moverse = new Moverse(this);
@@ -48,15 +48,15 @@ public class Juego { // TODO: hecho, falta armar tests.
 		this.nombreJugador = nombre;
 	}
 
-	public void setLocation(Location location) {
-		this.locationActual = location;
+	public void setLocation(Ubicacion ubicacion) {
+		this.ubicacionActual = ubicacion;
 		
 		/*luego de cambiar de ubicacion, describo el luegar donde ahora se encuentra el jugador*/
-		location.describir();
+		ubicacion.describir();
 	}
 
-	public Location getLocation() {
-		return locationActual;
+	public Ubicacion getUbicacion() {
+		return ubicacionActual;
 	}
 	
 }

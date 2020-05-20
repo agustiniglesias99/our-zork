@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import Ubicacion.Place;
 import items.Item;
-import locations.Place;
 
 public class PlaceTest {
 
