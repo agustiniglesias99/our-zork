@@ -2,7 +2,7 @@ package tests;
 
 import org.junit.Test;
 
-import main.Juego;
+//import main.Juego;
 
 public class LocationTest {
 	
