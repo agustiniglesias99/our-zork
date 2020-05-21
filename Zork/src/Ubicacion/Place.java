@@ -23,6 +23,7 @@ public class Place {
 		
 	}
 
+//// GETTERS ////
 	public String getName() {
 		return nombre;
 	}
@@ -33,43 +34,6 @@ public class Place {
 
 	public char getNumero() {
 		return numero;
-	}
-
-	@Override
-	public String toString() {
-		String descripcionSitio = "";
-		if(numero == 's')
-			descripcionSitio += genero == 'F' ? "una " : "un ";
-		else
-			descripcionSitio += genero == 'F' ? "unas " : "unos ";
-		return descripcionSitio + getNombre();
-	}
-	
-	public void agregarItem(Item objeto) {
-		items.add(objeto);	
-	}
-	
-	public String listarItems() {
-		String listaItems = "En ";
-		listaItems += genero == 'F'? "la " : "el ";
-		listaItems += getNombre() + " hay ";
-		Item item;
-		for (int indice = 0; indice < items.size(); indice++) {
-
-			item = items.get(indice);
-
-			// si es el ultimo item
-			if (indice + 1 == items.size()) {
-				listaItems += "y "  + item.toString() + ".";
-			} else {
-				listaItems += item.toString() + ", ";
-			}
-		}
-//		for (Item item : items) {
-//			listaItems+=item.toString();
-//			listaItems+=", ";
-//		}
-		return listaItems;	
 	}
 	public Item getItem(String objeto) { /*remueve el item de la lista, lo saca del place donde se encuentra*/
 		Item aux = null;
@@ -82,8 +46,51 @@ public class Place {
 		}
 		return aux;
 	}
-	 
-	 public String getNombre() {
-		 return nombre;
-	 }
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+//// LISTAS ////
+	public String listarItems() {
+		String listaItems = "En ";
+		listaItems += genero == 'F'? "la " : "el ";
+		listaItems += getNombre() + " hay ";
+		Item item;
+		for (int indice = 0; indice < items.size(); indice++) {
+			
+			item = items.get(indice);
+			if(items.size()==1) {
+				listaItems += item.toString() + ".";
+			}
+			// si es el ultimo item
+			else if (indice + 1 == items.size()) {
+				listaItems += "y "  + item.toString() + ".";
+			} else {
+				listaItems += item.toString() + ", ";
+			}
+		}
+//		for (Item item : items) {
+//			listaItems+=item.toString();
+//			listaItems+=", ";
+//		}
+		return listaItems;	
+	}
+
+//// AGREGAR ELEMENTOS ////
+	public void agregarItem(Item objeto) {
+		items.add(objeto);	
+	}
+	
+	@Override
+	public String toString() {
+		String descripcionSitio = "";
+		if(numero == 'S')
+			descripcionSitio += genero == 'F' ? "una " : "un ";
+		else
+			descripcionSitio += genero == 'F' ? "unas " : "unos ";
+		return descripcionSitio + getNombre();
+	}
+	
+	
 }

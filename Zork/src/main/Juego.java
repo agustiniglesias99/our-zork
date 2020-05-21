@@ -1,13 +1,68 @@
 package main;
+import java.io.File;
+import java.util.List;
+import java.util.Scanner;
+
 import Ubicacion.*;
 import acciones.Moverse;
+import items.Inventario;
 import items.Item;
 
 public class Juego { // TODO: hecho, falta armar tests.
 
-	Ubicacion ubicacionActual;
-	String nombreJugador;
+	public Ubicacion ubicacionActual;
+	public Inventario inventario;
+	public Interprete interprete;
+	public String nombreJugador;
+	public EndGame fin;
+	public File file;
+	public List<Ubicacion> ubicaciones;
+	
+	Scanner scann = new Scanner(System.in);
+	public String entradaJugador;
 	// TODO: agregar un objeto que guarde los pasos 
+	
+	public Juego(String filname) {
+		if(!cargarAventura(filname))
+			return;
+		ubicacionActual = ubicaciones.get(0);
+		System.out.println("Ingresa tu nombre: ");
+		nombreJugador = scann.nextLine();
+		System.out.println(nombreJugador + ubicacionActual.describir());
+		while(true) {
+			entradaJugador = scann.nextLine();
+			/* le mando al interprete lo qu eingreso el jugador para que me identifique que acciones realizar*/
+			interprete.set(entradaJugador);
+			
+			/* realizo la accion */
+			//accion(interprete.getVerbo(),interprete.getSustantivo());
+			
+			if(fin.comprobar(interprete.getVerbo(), interprete.getSustantivo())){
+				System.out.println(fin.getDescripcion());
+				return;
+			}
+			
+			/* limpio la entrada del jugador */
+			entradaJugador = "";
+		}
+	}
+	
+	public boolean cargarAventura(String filename) {
+		file = new File(filename);
+		if(!file.canRead()) {
+			System.out.println("Error al abrir el archivo para cargar la aventura...");
+			return false;
+		}
+		/* ahora trato de leer y cargar todos los elementos (ubicaciones, items, npcs,etc)*/
+		try {
+			//// Completar una vez decidido como va a ser nuestro archivo de entrada ////
+			return true;
+		}catch (Exception e) {
+			System.out.println(e);
+			return false;
+		}
+	}
+	
 	
 	public void generarEntorno() {
 		
@@ -16,6 +71,7 @@ public class Juego { // TODO: hecho, falta armar tests.
 		Ubicacion muelle = new Ubicacion("muelle", 'M') ;
 		Place mesa = new Place("Suelo",'F','S');
 		Place rincon = new Place("Rincon",'M','S');
+		inventario = new Inventario();
 		//set taberna
 		
 		mesa.agregarItem(new Item("cuchillo",'M','S'));
@@ -44,6 +100,9 @@ public class Juego { // TODO: hecho, falta armar tests.
 		moverse.accionar(muelle);
 	}
 	
+	public Inventario getInventario() {
+		return this.inventario;
+	}
 	public void setNombreJugador(String nombre) {
 		this.nombreJugador = nombre;
 	}

@@ -10,8 +10,8 @@ public class LocationTest {
 	@Test
 	public void describirLocationTest() {
 	
-		Juego set = new Juego();
-		set.generarEntorno();
+		//Juego set = new Juego();
+		//set.generarEntorno();
 	}
 	
 	@Test

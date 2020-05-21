@@ -12,12 +12,12 @@ public class Npc {
 	protected String talk;
 	//protected Item objetoDebilidad;
 	protected Debilidad debilidad;
-	protected String numero;
+	protected Character numero;
 	protected Boolean derrotado = false;
 	
 	
 
-	public Npc(String nombre, Character genero, String descripcion, String talk, /*Item*/Debilidad debilidad, String num) {
+	public Npc(String nombre, Character genero, String descripcion, String talk, /*Item*/Debilidad debilidad, Character num) {
 		
 		this.nombre = nombre;
 		this.genero = genero;

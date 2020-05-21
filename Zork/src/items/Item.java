@@ -15,6 +15,23 @@ public class Item {
 		this.numero = numero;
 	}
 	
+//// GETTERS ////
+	public String getNombre() {
+		return nombre;
+	}
+	
+	public String getMensaje() {
+		return mensaje;
+	}
+	
+	public Character getGenero() {
+		return genero;
+	}
+	public char getNumero(){
+		return numero;
+	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -51,22 +68,6 @@ public class Item {
 		} else if (!numero.equals(other.numero))
 			return false;
 		return true;
-	}
-	
-
-	public String getNombre() {
-		return nombre;
-	}
-	
-	public String getMensaje() {
-		return mensaje;
-	}
-
-	public Character getGenero() {
-		return genero;
-	}
-	public char getNumero(){
-		return numero;
 	}
 	
 	@Override

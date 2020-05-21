@@ -1,5 +1,13 @@
 package acciones;
 
+import java.util.Iterator;
+
+import Ubicacion.Place;
+import Ubicacion.Ubicacion;
+import items.Inventario;
+import items.Item;
+import main.Juego;
+
 public class Agarrar extends Accion {
 
 	//TODO:
@@ -12,8 +20,25 @@ public class Agarrar extends Accion {
 		-sacar el item la lista de items de la locaction actual (porque ya fue usado el item)
 		-ponerlo en el inventario
 	*/
+	Ubicacion ubicacionActual;
+	Inventario inventario;
+	Item item;
 	
-	public void accionar() {
+	public Agarrar(Juego juego) {
+		this.ubicacionActual = juego.getUbicacion();
+		this.inventario = juego.getInventario();
+		nombre = "agarrar";
+	}
+	public void accionar(Ubicacion actual, String objeto) {
+		Iterator<Place> it = actual.getPlace().iterator();
+		while(it.hasNext()) {
+			Place sitio = it.next();
+			item = sitio.getItem(objeto);
+			break;
+		}
+		inventario.agregarItem(item);
+		String salida = "Tinenes "+ item.toString() + "en tu inventario.";
+		System.out.println(salida);
 		// TODO Auto-generated method stub
 		
 	}

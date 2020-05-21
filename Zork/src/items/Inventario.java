@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class Inventario {
 	
 	protected String nombre;
-	protected HashMap<String, Item> inventory;//Preguntar cual es el value porque no tenia el UML
+	protected HashMap<String, Item> inventory;
 	protected String descripcion;
 	protected String[] aceptar;
 	
@@ -16,29 +16,37 @@ public class Inventario {
 		
 	}
 	
-	HashMap<String, Item> getInventory(){
+//// GETTERS ////	
+	public HashMap<String, Item> getInventory(){
 		
 		return this.inventory;
 		
 	}
-	
-	public void addItem(Item obj, String clave) {
+	public String listarItems() { 
 		
-		inventory.put(clave, obj);
+		String cadena = "En tu inventario hay: ";
+		for(Item item : inventory.values()) {
+			cadena += item.toString() + ". ";
+		}
+		return cadena;
+		
+	}
+	public Item getItem(String objeto) { /* remueve el item del inentario*/
+		Item aux = null;
+		for(Item item : inventory.values()) {
+			if(item.getNombre().equals(objeto)) {
+				aux = new Item(item.getNombre(), item.getGenero(), item.getNumero());
+				inventory.remove(objeto);
+				break;
+			}
+		}
+		return aux;
+	}
+//// AGREGAR ELEMENTO ////	
+	public void agregarItem(Item obj) {
+		inventory.put(obj.getNombre(), obj);
 		
 	}
 	
-	public String getItems() {
-		
-		return this.inventory.toString();
-		
-	}
-	
-	//PREGUNTAR QUE ES AGARRAR ITEM
-	
-	@Override
-	public String toString() {
-		return "[inventory=" + inventory + "]";
-	}
 		
 }

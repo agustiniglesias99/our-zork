@@ -16,6 +16,8 @@ public class ConexionTest {
 		Conexion c1 = new Conexion(u1,"norte");
 		Conexion c2 = new Conexion(u2,"sur","Fantasma");
 		
+		
+		
 	}
 
 }

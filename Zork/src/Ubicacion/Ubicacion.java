@@ -1,5 +1,6 @@
 package Ubicacion;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 //import items.Item;
@@ -10,7 +11,6 @@ public class Ubicacion { // TODO: hecho, falta armar tests.
 	private String nombre;
 	private Character genero;
 	private List<Place> sitios;
-//	private List<Item> items;// considero que items va en place no en location.
 	private List<Conexion> conexiones;
 	private List<Npc>npcs;
 
@@ -19,11 +19,11 @@ public class Ubicacion { // TODO: hecho, falta armar tests.
 		this.nombre = nombre;
 
 		conexiones = new LinkedList<>();
-//		items = new LinkedList<>(); // para mi esto no va aca, va en Place
 		sitios = new LinkedList<>();
 		npcs = new LinkedList<>();
 	}
 
+//// AGREGAR ELEMENOTS A LAS LISTAS ////
 	public void agregarConexion(Conexion conexion) {
 		conexiones.add(conexion);
 	}
@@ -35,23 +35,27 @@ public class Ubicacion { // TODO: hecho, falta armar tests.
 	public void agregarNpc(Npc personaje) {
 		npcs.add(personaje);
 	}
-//	public void agregarItem(Item item) { // considero que no va aca.
-//		items.add(item);
-//	}
-
+	
+//// ELIMINAR ELEMENTOS DE LAS LISTAS ////
 	public boolean removeNpc(String personaje) {
-		for (Npc npc : npcs) {
+		Conexion conexion;
+		for (int indice = 0; indice < conexiones.size(); indice++) {
+			conexion = conexiones.get(indice);
+			if(conexion.removeObstaculo(personaje))
+				break;
+		}
+		Iterator<Npc> it2 = npcs.iterator();
+		while(it2.hasNext()) {
+			Npc npc = it2.next();
 			if(npc.getNombreNpc().equals(personaje)) {
-				for (Conexion conexion : conexiones) {
-					if(conexion.getObstaculo().equals(personaje))
-						conexion.habilitar();
-				}
-				return npcs.remove(npc);
+				it2.remove();
+				return true;
 			}
 		}
 		return false;
 	}
-	
+
+//// GETTERS ////
 	public String listarPlaces() {
 		String listaPlace = "";
 		for (Place sitio : sitios) {
@@ -60,43 +64,55 @@ public class Ubicacion { // TODO: hecho, falta armar tests.
 		}
 		return listaPlace;	
 	}
-//	public List<Item> getItems() {
-//		return items;
-//	}
-	
-	public List<Conexion> getConexiones() {
-		return conexiones;
+	public List<Place> getPlace(){
+		return sitios;
+	}
+	public void getConexiones() {
+		for(Conexion conexion : conexiones) {
+			System.out.println(conexion.getLocation().getNombre());
+		}
 	}
 
+	public void getNpcs() {
+		for(Npc npc : npcs) {
+			System.out.println(npc.getNombreNpc());
+		}
+	}
 
+	public String getNombre() {
+		return nombre;
+	}
 	private Character getGenero() {
 		return genero;
 	}
 
-	public void describir() {
+//// DESCRIPCION DE LA UBICACION ////
+	public String describir() {
 
 		/*Articulos determinados: el, la
 		  Articulos indererminados: una, uno*/
 
 		String articuloDeterminado = genero == 'F' ? "la" : "el";
 
-		String cad = "Estas en " + articuloDeterminado + " " + nombre + ".";
+		String cad = "Estas en " + articuloDeterminado + " " + getNombre() + ".";
 
-		if (!conexiones.isEmpty())
-			cad += cadenaConexiones();
 		if(!sitios.isEmpty())
 			cad += cadenaSitios();
+		if (!conexiones.isEmpty())
+			cad += cadenaConexiones();
 
-		System.out.println(cad);
+		return cad;
 	}
 
 	public String cadenaSitios() {
-		String cadenaSitios = "Hay ";
+		String cadenaSitios = " Hay ";
 		Place sitio;
 		for (int indice = 0; indice < sitios.size(); indice++) {
 			sitio = sitios.get(indice);
-			if(indice + 1 == sitios.size()) 
-				cadenaSitios += "y " + sitio.toString();
+			if(sitios.size()==1)
+				cadenaSitios += sitio.toString() +".";
+			else if(indice + 1 == sitios.size()) 
+				cadenaSitios += "y " + sitio.toString() + "";
 			else
 				cadenaSitios += sitio.toString() + " ";
 		}
@@ -129,32 +145,6 @@ public class Ubicacion { // TODO: hecho, falta armar tests.
 		return cadenaConexiones;
 	}
 
-//	public String cadenaItems() {//CONSIDERO QUE ESTO NO VA ACA PORQUE ES UN ITEM, QUE ESTA EN UN PLACE NO EN UNA LOCATION
-//
-//		String articuloIndeterminado;
-//
-//		String cadenaItems = "A tu alrededor hay ";
-//
-//		Item item;
-//		for (int indice = 0; indice < items.size(); indice++) {
-//
-//			item = items.get(indice);
-//
-//			articuloIndeterminado = item.getGenero() == 'F' ? "una" : "un";
-//
-//			// si es el ultimo item
-//			if (indice + 1 == items.size()) {
-//				cadenaItems += "y " + articuloIndeterminado + " " + item.getNombre() + ".";
-//			} else {
-//				cadenaItems += articuloIndeterminado + " " + item.getNombre() + ", ";
-//			}
-//		}
-//		return cadenaItems;
-//	}
-
-	private String getNombre() {
-		return nombre;
-	}
 
 	public boolean sePuedeMoverAConexion(Ubicacion nuevaLocation) {
 

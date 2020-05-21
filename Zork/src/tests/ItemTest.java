@@ -18,6 +18,8 @@ public class ItemTest {
 		assertEquals("unas llaves",i3.toString());
 		assertEquals("un tarro", i2.toString());
 		
+		
+		
 	}
 
 }
