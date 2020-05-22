@@ -7,7 +7,6 @@ public class Item {
 	protected Character genero;
 	protected Character numero;
 	protected String mensaje;
-	//protected Lista<> efectOver; // TODO: revisar si hay q agregarlo
 	
 	public Item(String nombre, Character genero, Character numero) {
 		this.nombre = nombre;

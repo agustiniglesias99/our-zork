@@ -70,10 +70,6 @@ public class Place {
 				listaItems += item.toString() + ", ";
 			}
 		}
-//		for (Item item : items) {
-//			listaItems+=item.toString();
-//			listaItems+=", ";
-//		}
 		return listaItems;	
 	}
 

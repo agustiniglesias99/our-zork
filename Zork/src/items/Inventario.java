@@ -23,11 +23,19 @@ public class Inventario {
 		
 	}
 	public String listarItems() { 
-		
+		int i=0;
 		String cadena = "En tu inventario hay: ";
 		for(Item item : inventory.values()) {
-			cadena += item.toString() + ". ";
+			if(inventory.values().size() == 1) {
+				cadena += item.toString();
+			}else if(i+1 == inventory.values().size()) {
+				cadena += "y " + item.toString();
+			}else {
+				cadena += item.toString() + ", ";
+			}
+			i++;
 		}
+		cadena +=".";
 		return cadena;
 		
 	}

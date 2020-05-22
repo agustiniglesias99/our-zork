@@ -8,7 +8,7 @@ import acciones.Moverse;
 import items.Inventario;
 import items.Item;
 
-public class Juego { // TODO: hecho, falta armar tests.
+public class Juego {
 
 	public Ubicacion ubicacionActual;
 	public Inventario inventario;
@@ -22,6 +22,8 @@ public class Juego { // TODO: hecho, falta armar tests.
 	public String entradaJugador;
 	// TODO: agregar un objeto que guarde los pasos 
 	
+	
+	/**NOTA: este constructor inicializa la aventura en base a un archivo de aventura*/
 	public Juego(String filname) {
 		if(!cargarAventura(filname))
 			return;
@@ -61,6 +63,10 @@ public class Juego { // TODO: hecho, falta armar tests.
 			System.out.println(e);
 			return false;
 		}
+	}
+	
+//// constructor y  metodo generador para hacer los test para la primera entrega ////
+	public Juego() {
 	}
 	
 	

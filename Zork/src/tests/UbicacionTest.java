@@ -57,7 +57,7 @@ public class UbicacionTest {
 		
 		actual.getNpcs();
 		
-		//assertTrue(c2.getHabilitado());
+		assertTrue(c2.getHabilitado());
 	}
 
 }

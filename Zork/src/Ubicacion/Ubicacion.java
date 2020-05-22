@@ -38,22 +38,26 @@ public class Ubicacion { // TODO: hecho, falta armar tests.
 	
 //// ELIMINAR ELEMENTOS DE LAS LISTAS ////
 	public boolean removeNpc(String personaje) {
-		Conexion conexion;
-		for (int indice = 0; indice < conexiones.size(); indice++) {
-			conexion = conexiones.get(indice);
-			if(conexion.removeObstaculo(personaje))
+
+		for (Conexion conexion : conexiones) {
+
+			if (conexion.tieneObstaculo(personaje)) {
+				conexion.habilitar();
 				break;
+			}
 		}
+
 		Iterator<Npc> it2 = npcs.iterator();
-		while(it2.hasNext()) {
+		while (it2.hasNext()) {
 			Npc npc = it2.next();
-			if(npc.getNombreNpc().equals(personaje)) {
+			if (npc.getNombreNpc().equals(personaje)) {
 				it2.remove();
 				return true;
 			}
 		}
 		return false;
 	}
+
 
 //// GETTERS ////
 	public String listarPlaces() {
@@ -64,9 +68,11 @@ public class Ubicacion { // TODO: hecho, falta armar tests.
 		}
 		return listaPlace;	
 	}
+	
 	public List<Place> getPlace(){
 		return sitios;
 	}
+	
 	public void getConexiones() {
 		for(Conexion conexion : conexiones) {
 			System.out.println(conexion.getLocation().getNombre());
@@ -82,6 +88,7 @@ public class Ubicacion { // TODO: hecho, falta armar tests.
 	public String getNombre() {
 		return nombre;
 	}
+	
 	private Character getGenero() {
 		return genero;
 	}
@@ -89,8 +96,9 @@ public class Ubicacion { // TODO: hecho, falta armar tests.
 //// DESCRIPCION DE LA UBICACION ////
 	public String describir() {
 
-		/*Articulos determinados: el, la
-		  Articulos indererminados: una, uno*/
+		/*
+		 * Articulos determinados: el, la Articulos indererminados: una, uno
+		 */
 
 		String articuloDeterminado = genero == 'F' ? "la" : "el";
 
@@ -149,11 +157,19 @@ public class Ubicacion { // TODO: hecho, falta armar tests.
 	public boolean sePuedeMoverAConexion(Ubicacion nuevaLocation) {
 
 		Ubicacion location = null;
+
 		for (Conexion conexion : conexiones) {
-			
+
 			location = conexion.getLocation();
-			if (location.getNombre() == nuevaLocation.getNombre() && conexion.habilitado) {
-				return true;
+
+			if (location.getNombre() == nuevaLocation.getNombre()) {
+
+				if (conexion.habilitado == true) {
+					return true;
+				} else {
+					System.out.println("No podes pasar, hay un " + conexion.getObstaculo()); // TODO: revisar
+					return false;
+				}
 			}
 		}
 		return false;

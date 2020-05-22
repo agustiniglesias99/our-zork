@@ -19,11 +19,11 @@ public class InventarioTest {
 		in.agregarItem(it1);
 		in.agregarItem(it2);
 		
-		assertEquals("En tu inventario hay: una mesa. una botella. ", in.listarItems());
+		assertEquals("En tu inventario hay: una mesa, y una botella.", in.listarItems());
 		
 		in.getItem("botella");
 		
-		assertEquals("En tu inventario hay: una mesa. ", in.listarItems());
+		assertEquals("En tu inventario hay: una mesa.", in.listarItems());
 		
 	}
 

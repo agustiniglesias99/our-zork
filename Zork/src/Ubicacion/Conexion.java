@@ -22,16 +22,11 @@ public class Conexion { // TODO: hecho, falta armar tests.
 		this.habilitado = false;
 	}
 
+//// GETTERS ////
 	public Ubicacion getLocation() {
 		return ubicacion;
 	}
 	
-	public void habilitar() {
-		habilitado = true;
-	}	
-	public void deshabilitar() {
-		habilitado = false;
-	}
 	public String getObstaculo() {
 		return obstaculo;
 	}
@@ -43,26 +38,27 @@ public class Conexion { // TODO: hecho, falta armar tests.
 		return habilitado;
 	}
 	
+////   ////
+	public void habilitar() {
+		habilitado = true;
+	}	
+	public void deshabilitar() {
+		habilitado = false;
+	}
+	
 	public String descripcion() {
 		String descripcion = "Al ";
 		descripcion += getDireccion() + ubicacion.getNombre();
 		return descripcion;
 	}
-	
-	public boolean removeObstaculo(String obstaculo) {
-		if(this.obstaculo.equals(obstaculo)) {
-			//this.obstaculo = "";
-			habilitar();
-			return true;
+
+	public boolean tieneObstaculo(String personaje) {
+		if(this.obstaculo != null) {
+			if(obstaculo.equals(personaje)) {
+				return true;
+			}
 		}
 		return false;
 	}
 	
 }
-//Iterator<Conexion> it2 = conexiones.iterator();
-//while(it2.hasNext()) {
-//	Conexion conexion = it2.next();
-//	if(conexion.getObstaculo().equals(personaje)) {
-//		conexion.obstaculo = null;
-//		conexion.habilitar();
-//	}
