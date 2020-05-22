@@ -174,4 +174,14 @@ public class Ubicacion { // TODO: hecho, falta armar tests.
 		}
 		return false;
 	}
+
+	public String getNombreGenero() {
+		
+		return (genero == 'F'?"la":"el")+" " + nombre;
+	}
+
+	public List<Place> getSitios() {
+		
+		return sitios;
+	}
 }

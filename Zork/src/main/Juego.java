@@ -123,5 +123,10 @@ public class Juego {
 	public Ubicacion getUbicacion() {
 		return ubicacionActual;
 	}
+
+	public String getNombreJugador() {
+		
+		return nombreJugador;
+	}
 	
 }
